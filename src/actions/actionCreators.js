@@ -209,7 +209,7 @@ export async function getPurchaseById(dispatch, id) {
   dispatch(getPurchaseByIdRequest(id));
   try {
     const response = await fetch(
-      `https://some-app-heroku.herokuapp.com/api/purchases${id}`
+      `https://some-app-heroku.herokuapp.com/api/purchases/${id}`
     );
     if (!response.ok) {
       throw new Error();
