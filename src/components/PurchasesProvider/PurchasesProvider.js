@@ -98,7 +98,7 @@ function descPurchaseReducer(prevDescPurchase, action) {
     
   switch (action.type) {
     case GET_PURCHASE_BY_ID_REQUEST:
-      return { ...prevDescPurchase, loading: true, error: null  };
+      return { ...prevDescPurchase,id:action.payload.id, loading: true, error: null  };
     case GET_PURCHASE_BY_ID_SUCCSES:     
       return {
         item:action.payload.item,

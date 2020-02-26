@@ -8,7 +8,7 @@ export default function PurchasesSum() {
   } = state;
   console.log(items);
   return (
-    <div className="input-group mb-3 col-5 purchases-list">
+    <div className="input-group mb-3 col-6 purchases-list">
   <div className="input-group-prepend">
     <span className="input-group-text">Итого</span>
   </div>

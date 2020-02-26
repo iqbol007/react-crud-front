@@ -183,8 +183,8 @@ export function editPurchaseFailure(error) {
 }
 
 //////////////////////////////////
-export function getPurchaseByIdRequest() {
-  return { type: GET_PURCHASE_BY_ID_REQUEST, payload: {} };
+export function getPurchaseByIdRequest(id) {
+  return { type: GET_PURCHASE_BY_ID_REQUEST, payload: {id} };
 }
 export function getPurchaseByIdSuccses(item, id) {
   return { type: GET_PURCHASE_BY_ID_SUCCSES, payload: { item, id } };
@@ -199,7 +199,7 @@ export function getPurchaseCancel() {
   };
 }
 export async function getPurchaseById(dispatch, id) {
-  dispatch(getPurchaseByIdRequest());
+  dispatch(getPurchaseByIdRequest(id));
   try {
     const response = await fetch(`http://localhost:9999/api/purchases/${id}`);
     if (!response.ok) {
