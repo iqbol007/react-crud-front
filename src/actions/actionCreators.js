@@ -22,7 +22,9 @@ import {
 export async function getPurchases(dispatch) {
   dispatch(fetchPurchasesRequest());
   try {
-    const response = await fetch("http://localhost:9999/api/purchases");
+    const response = await fetch(
+      "http://some-app-heroku.herokuapp.com/api/purchases"
+    );
     if (!response.ok) {
       throw new Error();
     }
@@ -62,9 +64,12 @@ export function fetchPurchasesFailure(error) {
 export async function removePurchaseById(dispatch, id) {
   dispatch(removePurchaseRequest());
   try {
-    const response = await fetch(`http://localhost:9999/api/purchases/${id}`, {
-      method: "DELETE"
-    });
+    const response = await fetch(
+      `http://some-app-heroku.herokuapp.com/api/purchases${id}`,
+      {
+        method: "DELETE"
+      }
+    );
     if (!response.ok) {
       throw new Error();
     }
@@ -91,21 +96,21 @@ export function removePurchaseCancel() {
 
 export function removePurchaseRequest() {
   return {
-    type: REMOVE_PURCHASE_REQUEST,  
-    payload: {}  
+    type: REMOVE_PURCHASE_REQUEST,
+    payload: {}
   };
 }
 
 export function removePurchaseSuccess() {
   return {
-    type: REMOVE_PURCHASE_SUCCESS,  
+    type: REMOVE_PURCHASE_SUCCESS,
     payload: {}
   };
 }
 
 export function removePurchaseFailure(error) {
   return {
-    type: REMOVE_PURCHASE_FAILURE, 
+    type: REMOVE_PURCHASE_FAILURE,
     payload: {
       error
     }
@@ -141,41 +146,43 @@ export function editPurchaseCancel() {
 export async function editPurchase(dispatch, item) {
   dispatch(editPurchaseRequest());
   try {
-    
-    const response = await fetch(`http://localhost:9999/api/purchases`, {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json"
-      },
-      body: JSON.stringify(item)
-    });
+    const response = await fetch(
+      `http://some-app-heroku.herokuapp.com/api/purchases`,
+      {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json"
+        },
+        body: JSON.stringify(item)
+      }
+    );
     if (!response.ok) {
       throw new Error();
     }
     dispatch(editPurchaseSuccess());
   } catch (e) {
     dispatch(editPurchaseFailure(e));
-    throw e;  
+    throw e;
   }
 }
 
 export function editPurchaseRequest() {
   return {
-    type: EDIT_PURCHASE_REQUEST,  
-    payload: {} 
+    type: EDIT_PURCHASE_REQUEST,
+    payload: {}
   };
 }
 
 export function editPurchaseSuccess() {
   return {
-    type: EDIT_PURCHASE_SUCCESS,  
+    type: EDIT_PURCHASE_SUCCESS,
     payload: {}
   };
 }
 
 export function editPurchaseFailure(error) {
   return {
-    type: EDIT_PURCHASE_FAILURE,  
+    type: EDIT_PURCHASE_FAILURE,
     payload: {
       error
     }
@@ -184,7 +191,7 @@ export function editPurchaseFailure(error) {
 
 //////////////////////////////////
 export function getPurchaseByIdRequest(id) {
-  return { type: GET_PURCHASE_BY_ID_REQUEST, payload: {id} };
+  return { type: GET_PURCHASE_BY_ID_REQUEST, payload: { id } };
 }
 export function getPurchaseByIdSuccses(item, id) {
   return { type: GET_PURCHASE_BY_ID_SUCCSES, payload: { item, id } };
@@ -201,13 +208,15 @@ export function getPurchaseCancel() {
 export async function getPurchaseById(dispatch, id) {
   dispatch(getPurchaseByIdRequest(id));
   try {
-    const response = await fetch(`http://localhost:9999/api/purchases/${id}`);
+    const response = await fetch(
+      `http://some-app-heroku.herokuapp.com/api/purchases${id}`
+    );
     if (!response.ok) {
       throw new Error();
     }
     const item = await response.json();
     console.log(item);
-    
+
     dispatch(getPurchaseByIdSuccses(item, id));
   } catch (error) {
     dispatch(getPurchaseByIdFailure(error));
