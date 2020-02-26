@@ -23,7 +23,7 @@ export async function getPurchases(dispatch) {
   dispatch(fetchPurchasesRequest());
   try {
     const response = await fetch(
-      "http://some-app-heroku.herokuapp.com/api/purchases"
+      "https://some-app-heroku.herokuapp.com/api/purchases"
     );
     if (!response.ok) {
       throw new Error();
@@ -65,7 +65,7 @@ export async function removePurchaseById(dispatch, id) {
   dispatch(removePurchaseRequest());
   try {
     const response = await fetch(
-      `http://some-app-heroku.herokuapp.com/api/purchases${id}`,
+      `https://some-app-heroku.herokuapp.com/api/purchases${id}`,
       {
         method: "DELETE"
       }
@@ -147,7 +147,7 @@ export async function editPurchase(dispatch, item) {
   dispatch(editPurchaseRequest());
   try {
     const response = await fetch(
-      `http://some-app-heroku.herokuapp.com/api/purchases`,
+      `https://some-app-heroku.herokuapp.com/api/purchases`,
       {
         method: "POST",
         headers: {
@@ -209,7 +209,7 @@ export async function getPurchaseById(dispatch, id) {
   dispatch(getPurchaseByIdRequest(id));
   try {
     const response = await fetch(
-      `http://some-app-heroku.herokuapp.com/api/purchases${id}`
+      `https://some-app-heroku.herokuapp.com/api/purchases${id}`
     );
     if (!response.ok) {
       throw new Error();
