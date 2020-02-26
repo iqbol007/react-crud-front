@@ -38,7 +38,7 @@ export default function PurchasesList() {
   );
 
   return (
-    <div>
+    <div className="left">
       {loading && <Loader />}
       <ul className="list-group col-6 purchases-list  ">
         {items.map(o => (
