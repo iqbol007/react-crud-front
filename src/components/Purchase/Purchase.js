@@ -1,7 +1,7 @@
 import React, { useContext } from "react";
 import Loader from "../Loader/Loader";
 import PurchasesContext from "../../contexts/PurchasesContext";
- 
+
 import {
   editPurchaseExisting,
   removePurchaseConfirm,
@@ -12,7 +12,10 @@ import {
   removePurchaseCancel
 } from "../../actions/actionCreators";
 export default function Purchase({ purchase }) {
-  const {state: { removedPurchase, descPurchase },dispatch} = useContext(PurchasesContext);
+  const {
+    state: { removedPurchase, descPurchase },
+    dispatch
+  } = useContext(PurchasesContext);
 
   const handleEdit = evt => {
     evt.preventDefault();
@@ -43,25 +46,29 @@ export default function Purchase({ purchase }) {
     evt.preventDefault();
     dispatch(removePurchaseCancel());
   };
-  
+
   const handleShowDescription = async evt => {
     evt.preventDefault();
     try {
       await getPurchaseById(dispatch, purchase.id);
     } catch (error) {}
-
   };
 
   function getDescription() {
     if (descPurchase.id !== purchase.id) {
       return (
         <div>
-          <button class="btn btn-outline-info fl" onClick={handleShowDescription}>Показать описание</button>
+          <button
+            class="btn btn-outline-info fl"
+            onClick={handleShowDescription}
+          >
+            Показать описание
+          </button>
         </div>
       );
     }
     if (descPurchase.loading) {
-      return <Loader/>;
+      return <Loader />;
     }
     if (descPurchase.error) {
       return (
@@ -74,22 +81,17 @@ export default function Purchase({ purchase }) {
     }
     const { item } = descPurchase;
 
-      return (
-        <div>
-          description: { item } 
-        </div>
-      );
-    
+    return <div>description: {item}</div>;
   }
   const getFooter = () => {
     if (removedPurchase.id !== purchase.id) {
       return (
         <div className="left">
           <button class="btn btn-outline-dark fl" onClick={handleEdit}>
-          <i class="fa fa-pencil"></i>
+            <i class="fa fa-pencil"></i>
           </button>
-          <button className="btn btn-outline-danger fl"  onClick={handleRemove}>
-          <i className="fa fa-trash"></i> 
+          <button className="btn btn-outline-danger fl" onClick={handleRemove}>
+            <i className="fa fa-trash"></i>
           </button>
         </div>
       );
@@ -97,12 +99,14 @@ export default function Purchase({ purchase }) {
     if (removedPurchase.loading) {
       return <Loader />;
     }
-    
+
     if (removedPurchase.error) {
       return (
         <div>
           Произошла ошибка при удалении элемента. Повторить?
-          <button className="btn btn-outline-danger"  onClick={handleProcess}>Да</button>
+          <button className="btn btn-outline-danger" onClick={handleProcess}>
+            Да
+          </button>
           <button onClick={handleCancel}>Нет</button>
         </div>
       );
@@ -110,7 +114,7 @@ export default function Purchase({ purchase }) {
     return (
       <div>
         Вы уверены, что хотите удалить элемент?
-        <button  className="btn btn-outline-danger" onClick={handleProcess}>
+        <button className="btn btn-outline-danger" onClick={handleProcess}>
           Да
         </button>
         <button onClick={handleCancel}>Нет</button>
