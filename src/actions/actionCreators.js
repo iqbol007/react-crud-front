@@ -65,7 +65,7 @@ export async function removePurchaseById(dispatch, id) {
   dispatch(removePurchaseRequest());
   try {
     const response = await fetch(
-      `https://some-app-heroku.herokuapp.com/api/purchases${id}`,
+      `https://some-app-heroku.herokuapp.com/api/purchases/${id}`,
       {
         method: "DELETE"
       }

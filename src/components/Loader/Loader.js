@@ -1,8 +1,9 @@
-import React from 'react'
-import loader from './loader.gif'
+import React from "react";
 
-export default function Loader() { 
-    return (
-        <img src={loader} alt="something" />
-    )
+export default function Loader() {
+  return (
+    <div className="spinner-border" role="status">
+      <span className="sr-only">Loading...</span>
+    </div>
+  );
 }

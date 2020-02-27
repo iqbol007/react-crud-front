@@ -59,7 +59,7 @@ export default function Purchase({ purchase }) {
       return (
         <div>
           <button
-            class="btn btn-outline-info fl"
+            class="btn btn-outline-info"
             onClick={handleShowDescription}
           >
             Показать описание
@@ -74,8 +74,8 @@ export default function Purchase({ purchase }) {
       return (
         <div>
           Произошла ошибка при загрузке описания. Повторить?
-          <button onClick={handleProcessDesc}>Да</button>
-          <button onClick={handleCancelDesc}>Нет</button>
+          <button className="btn btn-outline-danger" onClick={handleProcessDesc}>Да</button>
+          <button className="btn btn-outline-danger" onClick={handleCancelDesc}>Нет</button>
         </div>
       );
     }
@@ -86,14 +86,14 @@ export default function Purchase({ purchase }) {
   const getFooter = () => {
     if (removedPurchase.id !== purchase.id) {
       return (
-        <div className="left">
-          <button class="btn btn-outline-dark fl" onClick={handleEdit}>
+        <>
+          <button class="btn btn-outline-dark btn-sm" onClick={handleEdit}>
             <i class="fa fa-pencil"></i>
           </button>
-          <button className="btn btn-outline-danger fl" onClick={handleRemove}>
+          <button className="btn btn-outline-danger btn-sm " onClick={handleRemove}>
             <i className="fa fa-trash"></i>
           </button>
-        </div>
+        </>
       );
     }
     if (removedPurchase.loading) {
@@ -107,7 +107,7 @@ export default function Purchase({ purchase }) {
           <button className="btn btn-outline-danger" onClick={handleProcess}>
             Да
           </button>
-          <button onClick={handleCancel}>Нет</button>
+          <button  className="btn btn-outline-danger" onClick={handleCancel}>Нет</button>
         </div>
       );
     }
@@ -117,18 +117,24 @@ export default function Purchase({ purchase }) {
         <button className="btn btn-outline-danger" onClick={handleProcess}>
           Да
         </button>
-        <button onClick={handleCancel}>Нет</button>
+        <button className="btn btn-outline-danger" onClick={handleCancel}>Нет</button>
       </div>
     );
   };
   return (
     <>
       <article>
-        {getFooter()}
-        <span>id: {purchase.id} - </span>
-        <span>category: {purchase.category} - </span>
-        <span>price: {purchase.price} </span>
-        {getDescription()}
+        <div className="card">
+          <h5 className="card-header">
+            Покупка №{purchase.id} <span className="to-right">{getFooter()}</span>
+          </h5>
+          <div className="card-body">
+            <h5 className="card-title center">Цена: {purchase.price}$</h5>
+            <p className="card-text center">Категория: {purchase.category}</p>
+            <span >{getDescription()}</span>
+            
+          </div>
+        </div>
       </article>
     </>
   );

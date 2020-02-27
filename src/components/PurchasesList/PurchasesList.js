@@ -38,18 +38,20 @@ export default function PurchasesList() {
   );
 
   return (
-    <div className="left">
-      {loading && <Loader />}
-      <ul className="list-group col-6 purchases-list  ">
+    <div className="container">
+      <ul className="list-group col-12">
         {items.map(o => (
           <li className="list-group-item">
-            {" "}
             <Purchase key={o.id} purchase={o} />
           </li>
         ))}
       </ul>
-      {error && errorEl}
-      <PurchasesSum className="purchases-list" />
+      <div className="row">
+        <div className="to-center">
+          {loading && <Loader />} {error && errorEl}
+        </div>
+      </div>
+      <PurchasesSum />
     </div>
   );
 }

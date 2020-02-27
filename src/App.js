@@ -6,12 +6,15 @@ import PurchasesList from "./components/PurchasesList/PurchasesList";
 
 function App() {
   return (
-    <div className={styles.App}>
+    <div className={styles.reduxBlock}>
+      <div className={styles.App}>
       <PurchasesProvider>
         <PurchaseEditForm />
         <PurchasesList />
       </PurchasesProvider>
+      </div>
     </div>
+    
   );
 }
 
